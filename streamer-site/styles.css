@@ -333,11 +333,22 @@ a { color: inherit; text-decoration: none; }
 }
 .clip-card:hover { transform: translateY(-4px); border-color: var(--purple); }
 .clip-thumb {
+  position: relative;
   aspect-ratio: 16/9;
   background: linear-gradient(135deg, rgba(57,255,20,0.25), rgba(0,255,171,0.2));
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.clip-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .clip-thumb .play {
+  position: relative;
+  z-index: 1;
   width: 52px; height: 52px;
   border-radius: 50%;
   background: rgba(0,0,0,0.4);
