@@ -43,18 +43,33 @@ Search `index.html` for these placeholders and replace with the real info:
 - **Avatar** — the "FK" placeholder box can be swapped for a real photo:
   replace `.avatar-placeholder` div with an `<img>`.
 
-## Going live on framekeeper.art
+## Deploying on Render
+
+A `render.yaml` Blueprint lives at the repo root, configured to serve this
+folder as a Render **Static Site** (`rootDir: streamer-site`, no build step).
+
+1. Push this repo to GitHub (already done: `rubylaken-sudo/Framekeeper`).
+2. In the [Render dashboard](https://dashboard.render.com), click
+   **New +** → **Blueprint**, and select this GitHub repo. Render will read
+   `render.yaml` and create a `framekeeper-site` static site automatically.
+3. Once deployed, Render gives you a URL like
+   `https://framekeeper-site.onrender.com`.
+
+If you'd rather set it up manually instead of via Blueprint: **New +** →
+**Static Site**, pick the repo, set **Root Directory** to `streamer-site`,
+leave **Build Command** blank, and set **Publish Directory** to `.`.
+
+## Pointing framekeeper.art at it
 
 The current framekeeper.art is hosted on **Adobe Portfolio**. To replace it
-with this site:
+with this site once deployed (on Render or elsewhere):
 
-1. Pick a static host — Netlify, Vercel, Cloudflare Pages, or GitHub Pages
-   all work with zero backend and have free tiers.
-2. Deploy this `streamer-site/` folder (drag-and-drop works on Netlify).
-3. In your domain registrar's DNS settings, point `framekeeper.art` at the
-   new host (each host gives you the exact records — usually a CNAME or
-   A record) instead of Adobe Portfolio's.
-4. Once DNS propagates, cancel/downgrade the Adobe Portfolio plan if no
-   longer needed.
+1. In Render, open the static site → **Settings** → **Custom Domains**, and
+   add `framekeeper.art`. Render will show you the exact DNS record to add
+   (usually a CNAME, or an A record for the apex domain).
+2. In your domain registrar's DNS settings, replace Adobe Portfolio's
+   records with the ones Render gave you.
+3. Once DNS propagates and Render shows the domain as verified,
+   cancel/downgrade the Adobe Portfolio plan if no longer needed.
 
 No server or database is required — it's plain HTML/CSS/JS.

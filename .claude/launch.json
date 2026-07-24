@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "obs-build", "start"],
       "port": 8080
+    },
+    {
+      "name": "streamer-site",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-ExecutionPolicy", "Bypass", "-File", "streamer-site/devserver.ps1", "-Port", "5500"],
+      "port": 5500
     }
   ]
 }
