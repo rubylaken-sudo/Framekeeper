@@ -2,8 +2,7 @@ services:
   - type: web
     name: framekeeper-site
     runtime: static
-    rootDir: streamer-site
-    staticPublishPath: .
+    staticPublishPath: streamer-site
     pullRequestPreviewsEnabled: false
     routes:
       - type: rewrite
