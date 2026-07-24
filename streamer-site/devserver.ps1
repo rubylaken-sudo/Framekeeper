@@ -18,8 +18,14 @@ while ($listener.IsListening) {
   $path = $req.Url.LocalPath
   if ($path -eq "/") { $path = "/index.html" }
   $filePath = Join-Path $root $path.TrimStart("/")
-
+  $resolvedRoot = (Resolve-Path $root).Path
+  $isSafe = $false
   if (Test-Path $filePath -PathType Leaf) {
+    $resolvedFile = (Resolve-Path $filePath).Path
+    $isSafe = $resolvedFile.StartsWith($resolvedRoot, [System.StringComparison]::OrdinalIgnoreCase)
+  }
+
+  if ($isSafe) {
     $ext = [System.IO.Path]::GetExtension($filePath)
     $contentType = $mime[$ext]
     if (-not $contentType) { $contentType = "application/octet-stream" }
