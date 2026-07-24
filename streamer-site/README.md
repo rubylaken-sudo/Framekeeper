@@ -39,7 +39,7 @@ Search `index.html` for these placeholders and replace with the real info:
 - **Clips** — the 4 `.clip-card` links currently point to `#`; point each at
   a real clip/YouTube URL (or swap the thumbnail div for a real embed/`<img>`).
 - **Gear list** — actual PC/mic/camera/capture specs in `#setup`.
-- **Email** — `hello@framekeeper.art` in the Contact section.
+- **Email** — `framekeeperttv@gmail.com` in the Contact section.
 - **Avatar** — the "FK" placeholder box can be swapped for a real photo:
   replace `.avatar-placeholder` div with an `<img>`.
 
