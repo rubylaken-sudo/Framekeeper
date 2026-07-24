@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "challenge-deck",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "obs-build", "start"],
+      "port": 8080
+    }
+  ]
+}

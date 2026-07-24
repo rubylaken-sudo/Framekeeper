@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Challenge Deck — Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{ --accent:#5ff771; }
+  html,body{height:100%}
+  body{
+    background:oklch(0.15 0.012 265);
+    color:oklch(0.96 0.005 265);
+    font-family:'Space Grotesk',sans-serif;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+  }
+  @keyframes cd-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.82)}}
+  @keyframes cd-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .cd-scroll{scrollbar-width:thin;scrollbar-color:oklch(0.4 0.02 265) transparent}
+  .cd-scroll::-webkit-scrollbar{width:8px}
+  .cd-scroll::-webkit-scrollbar-thumb{background:oklch(0.4 0.02 265);border-radius:8px}
+  .cd-scroll::-webkit-scrollbar-track{background:transparent}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid oklch(0.28 0.013 265 / 0.7);flex:none}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#0a160c;box-shadow:0 4px 16px color-mix(in oklab,var(--accent) 40%,transparent)}
+  .brand h1{font-size:17px;letter-spacing:.3px;font-weight:700}
+  .brand .sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:oklch(0.66 0.015 265);letter-spacing:1px}
+  .controls{display:flex;align-items:center;gap:14px}
+  .pill{display:flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1px;border:1px solid oklch(0.3 0.013 265);background:oklch(0.22 0.014 265);color:oklch(0.62 0.015 265)}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:oklch(0.45 0.014 265)}
+  .pill.on{background:oklch(0.64 0.21 25 / 0.12);border-color:oklch(0.64 0.21 25 / 0.4);color:oklch(0.78 0.16 25)}
+  .pill.on .dot{background:oklch(0.64 0.21 25);animation:cd-pulse 1.4s ease-in-out infinite}
+  .count{font-family:'JetBrains Mono',monospace;font-size:13px;color:oklch(0.7 0.015 265)}
+  .count b{color:oklch(0.96 0.005 265);font-weight:600}
+  .conn{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1px;padding:5px 10px;border-radius:7px;border:1px solid oklch(0.3 0.013 265)}
+  .conn.ok{color:var(--accent);border-color:color-mix(in oklab,var(--accent) 45%,transparent)}
+  .conn.bad{color:oklch(0.7 0.18 60);border-color:oklch(0.7 0.18 60 / 0.45)}
+  .clear{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;color:oklch(0.72 0.015 265);background:oklch(0.24 0.014 265);border:1px solid oklch(0.32 0.014 265);padding:8px 14px;border-radius:9px;cursor:pointer}
+  .clear:hover{background:oklch(0.28 0.015 265)}
+
+  .layout{display:flex;gap:28px;padding:24px 28px;flex:1;min-height:0}
+
+  .panel-col{width:440px;flex:none;display:flex;flex-direction:column;min-height:0}
+  .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:oklch(0.6 0.015 265);margin-bottom:14px}
+  .list{display:flex;flex-direction:column;gap:10px;overflow-y:auto;padding-right:8px;min-height:0}
+  .card{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:13px;cursor:pointer;background:oklch(0.215 0.014 265);border:1px solid oklch(0.3 0.013 265);transition:background .15s,border-color .15s}
+  .card:hover{background:oklch(0.235 0.015 265)}
+  .card.active{background:color-mix(in oklab,var(--accent) 13%,oklch(0.22 0.014 265));border-color:var(--accent)}
+  .bar{width:4px;height:40px;border-radius:4px;flex:none;background:oklch(0.34 0.012 265);transition:background .15s}
+  .card.active .bar{background:var(--accent)}
+  .body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+  .row{display:flex;align-items:center;gap:8px}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;padding:2px 6px;border-radius:5px;background:oklch(0.34 0.012 265);color:oklch(0.74 0.015 265);flex:none}
+  .title{font-weight:600;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .desc{font-size:12.5px;color:oklch(0.66 0.015 265);line-height:1.35}
+  .btn{font-size:12.5px;font-weight:500;padding:7px 14px;border-radius:8px;background:transparent;color:oklch(0.74 0.015 265);border:1px solid oklch(0.36 0.013 265);flex:none}
+  .card.active .btn{background:var(--accent);color:#0a160c;border-color:var(--accent);font-weight:600;letter-spacing:.3px}
+
+  .preview-col{flex:1;display:flex;flex-direction:column;min-width:0}
+  .capture{
+    position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+    border:1px solid oklch(0.3 0.014 265);
+    background:repeating-linear-gradient(135deg,oklch(0.2 0.014 265) 0px,oklch(0.2 0.014 265) 14px,oklch(0.225 0.016 265) 14px,oklch(0.225 0.016 265) 28px);
+  }
+  .capture-hint{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;pointer-events:none;
+  }
+  .capture-hint .t1{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;color:oklch(0.5 0.014 265)}
+  .capture-hint .t2{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:oklch(0.42 0.012 265)}
+  .hint{margin-top:14px;font-size:13px;color:oklch(0.6 0.015 265);line-height:1.4}
+
+  .ov-panel{
+    position:absolute;top:22px;left:22px;width:300px;max-width:42%;padding:15px 17px;border-radius:13px;
+    background:oklch(0.15 0.012 265 / 0.82);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border:1px solid oklch(0.45 0.01 265 / 0.4);
+    box-shadow:0 12px 40px oklch(0 0 0 / 0.45);
+    color:#fff;
+  }
+  .ov-head{display:flex;align-items:center;gap:9px;padding-bottom:11px;margin-bottom:11px;border-bottom:1px solid oklch(0.4 0.01 265 / 0.35)}
+  .ov-head .dot{width:8px;height:8px;border-radius:50%;background:oklch(0.64 0.21 25);animation:cd-pulse 1.4s ease-in-out infinite;flex:none}
+  .ov-head .ttl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;flex:1}
+  .ov-head .cnt{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--accent)}
+  .ov-empty{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:oklch(0.7 0.01 265 / 0.7);padding:6px 0;text-align:center}
+  .ov-items{display:flex;flex-direction:column;gap:9px}
+  .ov-item{display:flex;align-items:flex-start;gap:10px;animation:cd-in .28s ease both}
+  .ov-item .bar{width:3px;align-self:stretch;border-radius:3px;background:var(--accent);flex:none;margin-top:1px}
+  .ov-item .meta{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .ov-item .tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--accent)}
+  .ov-item .title{font-weight:600;font-size:14px;color:#fff;line-height:1.25}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <div class="mark">C</div>
+      <div>
+        <h1>CHALLENGE DECK</h1>
+        <div class="sub">FORTNITE · STREAM CONTROLS</div>
+      </div>
+    </div>
+    <div class="controls">
+      <div id="live" class="pill"><span class="dot"></span><span id="liveLabel">IDLE</span></div>
+      <div class="count"><b id="activeCount">0</b> / <span id="totalCount">0</span> active</div>
+      <div id="conn" class="conn bad">CONNECTING…</div>
+      <button class="clear" id="clearBtn">Clear all</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="panel-col">
+      <div class="label">CONTROL PANEL · TAP A CARD TO GO LIVE</div>
+      <div class="list cd-scroll" id="list"></div>
+    </div>
+
+    <div class="preview-col">
+      <div class="label">STREAM OVERLAY · WHAT VIEWERS SEE</div>
+      <div class="capture">
+        <div class="capture-hint">
+          <div class="t1">FORTNITE GAMEPLAY CAPTURE</div>
+          <div class="t2">drop your stream feed here</div>
+        </div>
+        <div class="ov-panel">
+          <div class="ov-head"><span class="dot"></span><span class="ttl">ACTIVE CHALLENGES</span><span class="cnt" id="ovCnt">0</span></div>
+          <div class="ov-empty" id="ovEmpty">No active challenges</div>
+          <div class="ov-items" id="ovItems"></div>
+        </div>
+      </div>
+      <div class="hint">Add this overlay as a browser source in OBS. Toggle challenges on the left and they stack here in real time.</div>
+    </div>
+  </div>
+
+<script>
+  const listEl = document.getElementById('list');
+  const connEl = document.getElementById('conn');
+  const ovItemsEl = document.getElementById('ovItems');
+  const ovEmptyEl = document.getElementById('ovEmpty');
+  const ovCntEl = document.getElementById('ovCnt');
+  let challenges = [];
+  let ws;
+
+  function render() {
+    const active = challenges.filter(c => c.active);
+    document.getElementById('activeCount').textContent = active.length;
+    document.getElementById('totalCount').textContent = challenges.length;
+    const live = document.getElementById('live');
+    live.classList.toggle('on', active.length > 0);
+    document.getElementById('liveLabel').textContent = active.length > 0 ? 'LIVE' : 'IDLE';
+
+    listEl.innerHTML = '';
+    for (const c of challenges) {
+      const card = document.createElement('div');
+      card.className = 'card' + (c.active ? ' active' : '');
+      card.innerHTML =
+        '<div class="bar"></div>' +
+        '<div class="body"><div class="row"><span class="tag"></span><span class="title"></span></div>' +
+        '<span class="desc"></span></div>';
+      card.querySelector('.tag').textContent = c.tag;
+      card.querySelector('.title').textContent = c.title;
+      card.querySelector('.desc').textContent = c.sub;
+      const btn = document.createElement('div');
+      btn.className = 'btn';
+      btn.textContent = c.active ? 'On Air' : 'Activate';
+      card.appendChild(btn);
+      card.addEventListener('click', () => send({ type: 'toggle', id: c.id }));
+      listEl.appendChild(card);
+    }
+
+    ovCntEl.textContent = active.length;
+    ovEmptyEl.style.display = active.length === 0 ? '' : 'none';
+    ovItemsEl.innerHTML = '';
+    for (const c of active) {
+      const el = document.createElement('div');
+      el.className = 'ov-item';
+      el.innerHTML = '<div class="bar"></div><div class="meta">' +
+        '<span class="tag"></span>' +
+        '<span class="title"></span></div>';
+      el.querySelector('.tag').textContent = c.tag;
+      el.querySelector('.title').textContent = c.title;
+      ovItemsEl.appendChild(el);
+    }
+  }
+
+  function send(msg) {
+    if (ws && ws.readyState === 1) ws.send(JSON.stringify(msg));
+  }
+
+  document.getElementById('clearBtn').addEventListener('click', () => send({ type: 'clear' }));
+
+  function connect() {
+    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+    ws = new WebSocket(proto + '://' + location.host);
+    ws.onopen = () => { connEl.textContent = 'CONNECTED'; connEl.className = 'conn ok'; };
+    ws.onclose = () => { connEl.textContent = 'RECONNECTING…'; connEl.className = 'conn bad'; setTimeout(connect, 1000); };
+    ws.onerror = () => ws.close();
+    ws.onmessage = (e) => {
+      const msg = JSON.parse(e.data);
+      if (msg.type === 'state') { challenges = msg.challenges; render(); }
+    };
+  }
+  connect();
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framekeeper — Game Streamer</title>
+<meta name="description" content="Framekeeper — live game streaming, highlights, schedule and community.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="glow glow-a"></div>
+<div class="glow glow-b"></div>
+
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="#top" class="logo">FRAME<span>KEEPER</span></a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#about">About</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#clips">Clips</a>
+      <a href="#setup">Setup</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-live" href="https://twitch.tv/framekeeper" target="_blank" rel="noopener">
+        <span class="dot"></span> Watch Live
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Currently playing <strong>Your Game Here</strong></p>
+      <h1>FRAME<span class="accent">KEEPER</span></h1>
+      <p class="hero-sub">Game streamer &amp; content creator. Chill vibes, sharp gameplay, and a community worth sticking around for.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://twitch.tv/framekeeper" target="_blank" rel="noopener">Watch on Twitch</a>
+        <a class="btn btn-ghost" href="https://discord.gg/your-invite" target="_blank" rel="noopener">Join Discord</a>
+      </div>
+      <ul class="hero-stats">
+        <li><strong>1.2K</strong><span>Followers</span></li>
+        <li><strong>150+</strong><span>Streams</span></li>
+        <li><strong>3</strong><span>Years live</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-head">
+      <p class="kicker">Who's behind the keyboard</p>
+      <h2>About Framekeeper</h2>
+    </div>
+    <div class="about-grid">
+      <div class="avatar-frame">
+        <div class="avatar-placeholder">FK</div>
+      </div>
+      <div class="about-copy">
+        <p>Hey, I'm Framekeeper — a game streamer focused on <strong>[genre, e.g. co-op survival &amp; roguelikes]</strong>. I stream a few nights a week, mixing serious runs with a laid-back chat, terrible jokes, and the occasional chaos clip.</p>
+        <p>Started streaming in <strong>[year]</strong> after years behind the camera in video production — turns out framing a shot and framing a clip aren't so different.</p>
+        <div class="fact-grid">
+          <div class="fact"><span class="fact-label">Main games</span><span class="fact-value">Fortnite · GTA 6</span></div>
+          <div class="fact"><span class="fact-label">Streaming since</span><span class="fact-value">2021</span></div>
+          <div class="fact"><span class="fact-label">Schedule</span><span class="fact-value">Mon · Tue · Wed · Thu · Fri</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule" class="section section-alt">
+    <div class="section-head">
+      <p class="kicker">When to catch me live</p>
+      <h2>Weekly Schedule</h2>
+    </div>
+    <div class="schedule-grid" id="schedule-grid">
+      <div class="day" data-day="Mon"><h3>Mon</h3><p class="time">7 – 10 PM</p><p class="tag">Ranked</p></div>
+      <div class="day" data-day="Tue"><h3>Tue</h3><p class="time">Off</p><p class="tag muted">Rest day</p></div>
+      <div class="day" data-day="Wed"><h3>Wed</h3><p class="time">7 – 10 PM</p><p class="tag">Co-op night</p></div>
+      <div class="day" data-day="Thu"><h3>Thu</h3><p class="time">Off</p><p class="tag muted">Rest day</p></div>
+      <div class="day" data-day="Fri"><h3>Fri</h3><p class="time">8 PM – 12 AM</p><p class="tag">Community night</p></div>
+      <div class="day" data-day="Sat"><h3>Sat</h3><p class="time">2 – 6 PM</p><p class="tag">Variety</p></div>
+      <div class="day" data-day="Sun"><h3>Sun</h3><p class="time">Off</p><p class="tag muted">Rest day</p></div>
+    </div>
+    <p class="schedule-note">Times shown in your local timezone assumption — replace with your real timezone. Schedule can change for events, see Discord for live updates.</p>
+  </section>
+
+  <!-- CLIPS -->
+  <section id="clips" class="section">
+    <div class="section-head">
+      <p class="kicker">Best moments</p>
+      <h2>Clips &amp; Highlights</h2>
+    </div>
+    <div class="clips-grid">
+      <a class="clip-card" href="#" target="_blank" rel="noopener">
+        <div class="clip-thumb"><span class="play">▶</span></div>
+        <div class="clip-meta"><h3>Clutch 1v4 comeback</h3><p>Replace with your clip link</p></div>
+      </a>
+      <a class="clip-card" href="#" target="_blank" rel="noopener">
+        <div class="clip-thumb"><span class="play">▶</span></div>
+        <div class="clip-meta"><h3>Chat breaks the boss fight</h3><p>Replace with your clip link</p></div>
+      </a>
+      <a class="clip-card" href="#" target="_blank" rel="noopener">
+        <div class="clip-thumb"><span class="play">▶</span></div>
+        <div class="clip-meta"><h3>First playthrough win</h3><p>Replace with your clip link</p></div>
+      </a>
+      <a class="clip-card" href="#" target="_blank" rel="noopener">
+        <div class="clip-thumb"><span class="play">▶</span></div>
+        <div class="clip-meta"><h3>Community night highlight</h3><p>Replace with your clip link</p></div>
+      </a>
+    </div>
+    <div class="clips-cta">
+      <a class="btn btn-ghost" href="https://youtube.com/@framekeeper" target="_blank" rel="noopener">See all highlights on YouTube</a>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="section section-alt">
+    <div class="section-head">
+      <p class="kicker">Behind the stream</p>
+      <h2>Setup &amp; Gear</h2>
+    </div>
+    <div class="gear-grid">
+      <div class="gear-item"><span class="gear-icon">🖥️</span><h3>PC</h3><p>Your rig specs here</p></div>
+      <div class="gear-item"><span class="gear-icon">🎙️</span><h3>Mic</h3><p>Your microphone model</p></div>
+      <div class="gear-item"><span class="gear-icon">📷</span><h3>Camera</h3><p>Your webcam / camera</p></div>
+      <div class="gear-item"><span class="gear-icon">🎛️</span><h3>Capture</h3><p>Your capture card / audio mixer</p></div>
+      <div class="gear-item"><span class="gear-icon">🖱️</span><h3>Peripherals</h3><p>Mouse, keyboard, headset</p></div>
+      <div class="gear-item"><span class="gear-icon">💡</span><h3>Lighting</h3><p>Your lighting setup</p></div>
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support" class="section">
+    <div class="section-head">
+      <p class="kicker">Keep the stream running</p>
+      <h2>Support Framekeeper</h2>
+    </div>
+    <div class="support-grid">
+      <a class="support-card" href="https://twitch.tv/subs/framekeeper" target="_blank" rel="noopener">
+        <h3>Subscribe</h3>
+        <p>Sub on Twitch for emotes, badges &amp; sub-only perks.</p>
+      </a>
+      <a class="support-card" href="https://ko-fi.com/framekeeper" target="_blank" rel="noopener">
+        <h3>Ko-fi</h3>
+        <p>One-off tips to support the channel.</p>
+      </a>
+      <a class="support-card" href="https://streamlabs.com/framekeeper" target="_blank" rel="noopener">
+        <h3>Streamlabs</h3>
+        <p>Donate directly during a live stream.</p>
+      </a>
+      <a class="support-card" href="#" target="_blank" rel="noopener">
+        <h3>Merch</h3>
+        <p>Shop coming soon — link your store here.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT / SOCIALS -->
+  <section id="contact" class="section section-alt contact-section">
+    <div class="section-head">
+      <p class="kicker">Say hi</p>
+      <h2>Get in touch</h2>
+    </div>
+    <p class="contact-copy">For business inquiries, collabs or sponsorships, reach out below.</p>
+    <a class="btn btn-primary" href="mailto:hello@framekeeper.art">hello@framekeeper.art</a>
+
+    <div class="social-row">
+      <a href="https://twitch.tv/framekeeper" target="_blank" rel="noopener" aria-label="Twitch">Twitch</a>
+      <a href="https://youtube.com/@framekeeper" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+      <a href="https://twitter.com/framekeeper" target="_blank" rel="noopener" aria-label="Twitter / X">Twitter/X</a>
+      <a href="https://www.instagram.com/framekeeper_" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <a href="https://discord.gg/your-invite" target="_blank" rel="noopener" aria-label="Discord">Discord</a>
+      <a href="https://www.facebook.com/Framekeeperart" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> Framekeeper. All rights reserved.</p>
+  <a href="#top" class="back-to-top">Back to top ↑</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
