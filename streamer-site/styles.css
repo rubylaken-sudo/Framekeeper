@@ -410,7 +410,7 @@ a { color: inherit; text-decoration: none; }
 /* Setup / gear */
 .gear-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 .gear-item {
@@ -502,10 +502,12 @@ a { color: inherit; text-decoration: none; }
   .about-grid { grid-template-columns: 1fr; }
   .avatar-frame { width: 140px; margin: 0 auto; }
   .schedule-grid { grid-template-columns: repeat(3, 1fr); }
+  .gear-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
   .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+  .gear-grid { grid-template-columns: 1fr; }
   .hero-stats { gap: 28px; }
   .hero h1 { letter-spacing: 0.5px; }
 }
