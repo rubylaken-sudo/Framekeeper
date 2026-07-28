@@ -49,7 +49,7 @@ window.addEventListener('mousemove', (e) => {
 });
 
 // Scroll-reveal for below-the-fold content
-const revealGroups = document.querySelectorAll('.gear-grid, .clips-grid, .support-grid, .schedule-grid, .fact-grid');
+const revealGroups = document.querySelectorAll('.gear-grid, .clips-grid, .support-grid, .schedule-grid, .fact-grid, .challenge-list');
 revealGroups.forEach((group) => {
   Array.from(group.children).forEach((el, i) => {
     el.classList.add('reveal');

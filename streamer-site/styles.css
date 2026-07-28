@@ -374,6 +374,39 @@ a { color: inherit; text-decoration: none; }
 .clip-meta p { margin: 0; color: var(--text-dim); font-size: 0.85rem; }
 .clips-cta { text-align: center; margin-top: 40px; }
 
+/* Challenges */
+.challenge-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.challenge-item {
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--card-border);
+}
+.challenge-item:last-child { border-bottom: none; }
+.challenge-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.challenge-tag {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: rgba(0, 255, 171, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.challenge-desc { margin: 6px 0 0 0; color: var(--text-dim); font-size: 0.9rem; }
+.challenge-note { text-align: center; max-width: 560px; margin: 32px auto 0; color: var(--text-dim); font-size: 0.85rem; }
+
 /* Setup / gear */
 .gear-grid {
   display: grid;
