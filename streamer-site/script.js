@@ -23,7 +23,7 @@ document.querySelectorAll('.day').forEach((day) => {
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // 3D tilt on hover for cards
-const tiltEls = document.querySelectorAll('.gear-item, .clip-card, .support-card, .fact, .day');
+const tiltEls = document.querySelectorAll('.gear-item, .clip-card, .support-card, .fact, .day, .countdown-glass');
 tiltEls.forEach((el) => {
   el.addEventListener('mousemove', (e) => {
     const rect = el.getBoundingClientRect();
@@ -67,3 +67,26 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+// GTA VI release countdown
+const gtaTarget = new Date('2026-05-26T00:00:00');
+const cdDays = document.getElementById('cd-days');
+function updateGtaCountdown() {
+  if (!cdDays) return;
+  const diff = gtaTarget - new Date();
+  const label = document.getElementById('cd-target-label');
+  if (diff <= 0) {
+    ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach((id) => {
+      document.getElementById(id).textContent = '00';
+    });
+    if (label) label.textContent = 'GTA VI is out now!';
+    return;
+  }
+  const pad = (n) => String(n).padStart(2, '0');
+  document.getElementById('cd-days').textContent = pad(Math.floor(diff / 86400000));
+  document.getElementById('cd-hours').textContent = pad(Math.floor(diff / 3600000) % 24);
+  document.getElementById('cd-mins').textContent = pad(Math.floor(diff / 60000) % 60);
+  document.getElementById('cd-secs').textContent = pad(Math.floor(diff / 1000) % 60);
+}
+updateGtaCountdown();
+setInterval(updateGtaCountdown, 1000);
