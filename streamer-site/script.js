@@ -69,7 +69,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
 // GTA VI release countdown
-const gtaTarget = new Date('2026-05-26T00:00:00');
+const gtaTarget = new Date('2026-11-19T00:00:00');
 const cdDays = document.getElementById('cd-days');
 function updateGtaCountdown() {
   if (!cdDays) return;
