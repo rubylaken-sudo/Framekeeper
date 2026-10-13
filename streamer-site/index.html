@@ -48,7 +48,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <p class="eyebrow">Currently playing <strong>Your Game Here</strong></p>
+      <p class="eyebrow">Currently playing <strong data-bind="currentlyPlaying">Your Game Here</strong></p>
       <h1>FRAME<span class="accent">KEEPER</span></h1>
       <p class="hero-sub">Game streamer &amp; content creator. Chill vibes, sharp gameplay, and a community worth sticking around for.</p>
       <div class="hero-actions">
@@ -56,8 +56,8 @@
         <a class="btn btn-ghost" href="https://discord.gg/zXcfpspNe" target="_blank" rel="noopener">Join Discord</a>
       </div>
       <ul class="hero-stats">
-        <li><strong>272</strong><span>Followers</span></li>
-        <li><strong>150+</strong><span>Streams</span></li>
+        <li><strong data-bind="followers">272</strong><span>Followers</span></li>
+        <li><strong data-bind="streams">150+</strong><span>Streams</span></li>
       </ul>
     </div>
   </section>
@@ -103,9 +103,9 @@
         <p>Hi, I'm Framekeeper — originally from Curaçao, now living in the Netherlands. I'm into gaming (especially ZB), photography, and tech &amp; gadgets. We run a family-friendly stream for everyone to enjoy.</p>
         <p>I've got challenges available to redeem, and we play everything from solos, duos, and trios to squads — with friends, viewers, and sometimes fill games too.</p>
         <div class="fact-grid">
-          <div class="fact"><span class="fact-label">Main games</span><span class="fact-value">Fortnite · GTA 6 · The Precinct · Battlefield 6</span></div>
-          <div class="fact"><span class="fact-label">Streaming since</span><span class="fact-value">Jan 2026</span></div>
-          <div class="fact"><span class="fact-label">Schedule</span><span class="fact-value">Mon · Tue · Thu · Fri</span></div>
+          <div class="fact"><span class="fact-label">Main games</span><span class="fact-value" data-bind="mainGames">Fortnite · GTA 6 · The Precinct · Battlefield 6</span></div>
+          <div class="fact"><span class="fact-label">Streaming since</span><span class="fact-value" data-bind="streamingSince">Jan 2026</span></div>
+          <div class="fact"><span class="fact-label">Schedule</span><span class="fact-value" data-bind="scheduleSummary">Mon · Tue · Thu · Fri</span></div>
         </div>
       </div>
     </div>

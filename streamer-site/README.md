@@ -1,16 +1,56 @@
 # Framekeeper — streamer site
 
 A custom, static one-page site for Framekeeper as a game streamer: hero,
-about, weekly schedule, clips, setup/gear, support, and contact/socials.
-Dark background with purple/cyan/pink neon accents, clean modern layout.
+GTA VI countdown, about, weekly schedule, clips, challenges, setup/gear,
+support, and contact/socials. Dark background with neon green accents.
 
 ```
 streamer-site/
-├─ index.html      ← all page content/sections
-├─ styles.css      ← theme, layout, responsive rules
-├─ script.js       ← mobile nav toggle, "today" schedule highlight, footer year
-└─ devserver.ps1   ← tiny local preview server (no Node/Python needed)
+├─ index.html       ← page structure and fallback content
+├─ styles.css       ← theme, layout, responsive rules
+├─ script.js        ← renders site-data.json, nav, tilt/reveal effects, countdown
+├─ site-data.json   ← the content you edit most (followers, schedule, clips…)
+├─ admin.html       ← phone-friendly editor that publishes site-data.json
+└─ devserver.ps1    ← tiny local preview server (no Node/Python needed)
 ```
+
+## Updating from your phone
+
+Open `https://<your-site>/admin.html` on your phone (add it to your home screen
+for one-tap access). It edits `site-data.json` and commits it to GitHub; Render
+redeploys the site automatically, usually within a minute or two.
+
+What you can edit there: currently playing, followers, streams, main games,
+streaming since, the weekly schedule (times, labels, rest days), the GTA VI
+release date, clips (paste a YouTube Shorts link), and the gear list.
+
+**One-time setup — create a GitHub token for your phone**
+
+1. GitHub → Settings → Developer settings → Personal access tokens →
+   Fine-grained tokens → Generate new token.
+2. Repository access: *Only select repositories* → `Framekeeper`.
+3. Repository permissions → **Contents: Read and write** (nothing else).
+4. Set an expiration, generate, then paste the token into `admin.html` on your
+   phone and tap **Save token on this device**.
+
+The token is stored only in that phone's browser (localStorage) and is sent
+only to `api.github.com`. Anyone who finds `admin.html` can see the form but
+cannot publish without the token. If the phone is lost, revoke the token on
+GitHub. When it expires, generate a new one and paste it in again.
+
+Because the admin page commits straight to `main`, run `git pull` in your local
+clones before making changes on your computer.
+
+**No token handy?** You can also edit `streamer-site/site-data.json` directly in
+the GitHub mobile app or on github.com — same result.
+
+## Editing content on your computer
+
+Most content lives in `site-data.json`. Text that rarely changes (bio, support
+cards, challenge list, social links, email) is in `index.html`.
+
+`index.html` also holds fallback values for the data-driven parts, so the page
+still shows sensible content if `site-data.json` can't be loaded.
 
 ## Preview it locally
 
@@ -22,31 +62,16 @@ powershell -ExecutionPolicy Bypass -File streamer-site\devserver.ps1 -Port 5500
 ```
 
 Then open `http://localhost:5500/` in a browser. (Opening `index.html`
-directly by double-click also mostly works, but some browsers block the
+directly by double-click won't work: browsers block `site-data.json` and the
 external `styles.css`/`script.js` on `file://` — the local server avoids that.)
 
 If Node or Python are ever installed, `npx serve .` or `python -m http.server`
 work too.
 
-## Things to customize before going live
-
-Search `index.html` for these placeholders and replace with the real info:
-
-- **Twitch/social links** — `twitch.tv/framekeeper`, Discord invite,
-  YouTube, Twitter/X, Ko-fi/Streamlabs links are placeholders.
-- **Bio & facts** — `[genre]`, `[year]`, main games, city, in the About section.
-- **Schedule** — days/times/tags in the `#schedule` grid.
-- **Clips** — the 4 `.clip-card` links currently point to `#`; point each at
-  a real clip/YouTube URL (or swap the thumbnail div for a real embed/`<img>`).
-- **Gear list** — actual PC/mic/camera/capture specs in `#setup`.
-- **Email** — `framekeeperttv@gmail.com` in the Contact section.
-- **Avatar** — the "FK" placeholder box can be swapped for a real photo:
-  replace `.avatar-placeholder` div with an `<img>`.
-
 ## Deploying on Render
 
 A `render.yaml` Blueprint lives at the repo root, configured to serve this
-folder as a Render **Static Site** (`rootDir: streamer-site`, no build step).
+folder as a Render **Static Site** (no build step).
 
 1. Push this repo to GitHub (already done: `rubylaken-sudo/Framekeeper`).
 2. In the [Render dashboard](https://dashboard.render.com), click

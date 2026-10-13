@@ -1,0 +1,37 @@
+{
+  "currentlyPlaying": "Your Game Here",
+  "stats": {
+    "followers": "272",
+    "streams": "150+"
+  },
+  "facts": {
+    "mainGames": "Fortnite · GTA 6 · The Precinct · Battlefield 6",
+    "streamingSince": "Jan 2026"
+  },
+  "schedule": [
+    { "day": "Mon", "time": "8:30 – 10 PM", "tag": "Streaming", "off": false },
+    { "day": "Tue", "time": "8:30 – 10:30 PM", "tag": "Streaming", "off": false },
+    { "day": "Wed", "time": "Off", "tag": "Rest day", "off": true },
+    { "day": "Thu", "time": "8:30 – 10:30 PM", "tag": "Streaming", "off": false },
+    { "day": "Fri", "time": "8:30 PM – 12 AM", "tag": "Community night", "off": false },
+    { "day": "Sat", "time": "Off", "tag": "Rest day", "off": true },
+    { "day": "Sun", "time": "Off", "tag": "Rest day", "off": true }
+  ],
+  "gta6": {
+    "releaseDate": "2026-11-19"
+  },
+  "clips": [
+    { "id": "Y5DEf-rp5hI", "title": "How to beat the Arc Lightning Gun", "label": "Fortnite · YouTube Shorts" },
+    { "id": "bRfI6fkyy3M", "title": "Dub with Professor Noc", "label": "Fortnite · YouTube Shorts" },
+    { "id": "oOH2IiJlYl0", "title": "Smooth Victory Royale!", "label": "Fortnite · YouTube Shorts" },
+    { "id": "zA9T_tuTfZ0", "title": "Team Work!!!", "label": "Fortnite · YouTube Shorts" }
+  ],
+  "gear": [
+    { "icon": "🖥️", "name": "PC", "text": "Corsair 3500X LX-R RGB Black, MSI MAG B850 Tomahawk WiFi" },
+    { "icon": "🎙️", "name": "Mic", "text": "Fifine AM8" },
+    { "icon": "📷", "name": "Camera", "text": "Canon R6 Mk II" },
+    { "icon": "🎛️", "name": "Capture", "text": "Wave XLR Pro" },
+    { "icon": "🖱️", "name": "Peripherals", "text": "Logitech MX Keys, Logitech MX Mouse, Clam 2 headset" },
+    { "icon": "🎮", "name": "Controller", "text": "Gaming on controller" }
+  ]
+}
