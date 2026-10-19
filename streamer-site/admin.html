@@ -142,6 +142,14 @@
     </section>
 
     <section class="card">
+      <h2>Stream challenges</h2>
+      <label for="challengeNote">Note under the list</label>
+      <input type="text" id="challengeNote">
+      <div id="challenges"></div>
+      <div class="actions"><button class="small" type="button" id="add-challenge">+ Add challenge</button></div>
+    </section>
+
+    <section class="card">
       <h2>Setup &amp; gear</h2>
       <div id="gear"></div>
       <div class="actions"><button class="small" type="button" id="add-gear">+ Add gear</button></div>
@@ -306,6 +314,30 @@ function addClipRow(c = { id: '', title: '', label: 'Fortnite · YouTube Shorts'
   host.append(row);
 }
 
+function addChallengeRow(c = { tag: '', title: '', desc: '' }) {
+  const host = $('challenges');
+  const { row, head } = rowShell(`Challenge ${host.children.length + 1}`);
+  row.dataset.kind = 'challenge';
+  const remove = document.createElement('button');
+  remove.type = 'button';
+  remove.className = 'small danger';
+  remove.textContent = 'Remove';
+  remove.addEventListener('click', () => { row.remove(); renumber(host, 'Challenge'); });
+  head.append(remove);
+
+  row.append(
+    field('Category tag', c.tag, { 'data-role': 'tag', placeholder: 'Drop, Aim, Chat…' }).wrap,
+    field('Title', c.title, { 'data-role': 'title' }).wrap,
+    field('Description', c.desc, { 'data-role': 'desc' }).wrap
+  );
+  host.append(row);
+}
+
+function renderChallenges(items) {
+  $('challenges').replaceChildren();
+  items.forEach((c) => addChallengeRow(c));
+}
+
 function addGearRow(g = { icon: '🎮', name: '', text: '' }) {
   const host = $('gear');
   const { row, head } = rowShell(`Item ${host.children.length + 1}`);
@@ -345,6 +377,8 @@ function fillForm(d) {
   $('releaseDate').value = (d.gta6 && d.gta6.releaseDate) || '';
   renderSchedule(d.schedule || []);
   renderClips(d.clips || []);
+  $('challengeNote').value = d.challengeNote || '';
+  renderChallenges(d.challenges || []);
   renderGear(d.gear || []);
 }
 
@@ -388,6 +422,15 @@ function collectForm() {
     clips.push({ id, title: title || 'Untitled clip', label: label || 'YouTube Shorts' });
   });
 
+  const challenges = [];
+  Array.from($('challenges').children).forEach((row) => {
+    const tag = row.querySelector('[data-role=tag]').value.trim();
+    const title = row.querySelector('[data-role=title]').value.trim();
+    const desc = row.querySelector('[data-role=desc]').value.trim();
+    if (!title && !desc) return;
+    challenges.push({ tag: tag || 'Chat', title, desc });
+  });
+
   const gear = [];
   Array.from($('gear').children).forEach((row) => {
     const name = row.querySelector('[data-role=name]').value.trim();
@@ -399,12 +442,15 @@ function collectForm() {
 
   return {
     result: {
+      ...data,
       currentlyPlaying: $('currentlyPlaying').value.trim(),
       stats: { followers: $('followers').value.trim(), streams: $('streams').value.trim() },
       facts: { mainGames: $('mainGames').value.trim(), streamingSince: $('streamingSince').value.trim() },
       schedule,
       gta6: { releaseDate: $('releaseDate').value },
       clips,
+      challengeNote: $('challengeNote').value.trim(),
+      challenges,
       gear
     },
     badClips
@@ -491,6 +537,7 @@ $('sign-out').addEventListener('click', () => {
 $('reload').addEventListener('click', load);
 $('publish').addEventListener('click', publish);
 $('add-clip').addEventListener('click', () => addClipRow());
+$('add-challenge').addEventListener('click', () => addChallengeRow());
 $('add-gear').addEventListener('click', () => addGearRow());
 $('editor').addEventListener('submit', (e) => e.preventDefault());
 

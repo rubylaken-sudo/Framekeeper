@@ -22,7 +22,8 @@ redeploys the site automatically, usually within a minute or two.
 
 What you can edit there: currently playing, followers, streams, main games,
 streaming since, the weekly schedule (times, labels, rest days), the GTA VI
-release date, clips (paste a YouTube Shorts link), and the gear list.
+release date, clips (paste a YouTube Shorts link), the stream challenges
+(add, edit, remove), and the gear list.
 
 **One-time setup — create a GitHub token for your phone**
 
@@ -47,7 +48,7 @@ the GitHub mobile app or on github.com — same result.
 ## Editing content on your computer
 
 Most content lives in `site-data.json`. Text that rarely changes (bio, support
-cards, challenge list, social links, email) is in `index.html`.
+cards, social links, email) is in `index.html`.
 
 `index.html` also holds fallback values for the data-driven parts, so the page
 still shows sensible content if `site-data.json` can't be loaded.

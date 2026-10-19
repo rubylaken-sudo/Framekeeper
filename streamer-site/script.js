@@ -62,6 +62,18 @@ function renderClips(clips) {
   }));
 }
 
+function renderChallenges(items) {
+  const list = document.querySelector('.challenge-list');
+  if (!list || !Array.isArray(items) || !items.length) return;
+  list.replaceChildren(...items.map((c) => {
+    const item = make('div', 'challenge-item');
+    const title = make('div', 'challenge-title');
+    title.append(make('span', 'challenge-tag', c.tag), document.createTextNode(c.title));
+    item.append(title, make('p', 'challenge-desc', c.desc));
+    return item;
+  }));
+}
+
 function renderGear(items) {
   const grid = document.querySelector('.gear-grid');
   if (!grid || !Array.isArray(items) || !items.length) return;
@@ -85,6 +97,8 @@ function applySiteData(data) {
     if (active.length) setText('scheduleSummary', active.join(' · '));
   }
   renderClips(data.clips);
+  renderChallenges(data.challenges);
+  setText('challengeNote', data.challengeNote);
   renderGear(data.gear);
 
   const release = data.gta6 && data.gta6.releaseDate;
