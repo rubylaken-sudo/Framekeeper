@@ -11,7 +11,7 @@
   "schedule": [
     {
       "day": "Mon",
-      "time": "8:30 – 10 PM",
+      "time": "8:30 – 23 PM",
       "tag": "Streaming",
       "off": false
     },
@@ -95,7 +95,7 @@
     },
     {
       "icon": "🎛️",
-      "name": "Capture",
+      "name": "Audio Capture",
       "text": "Wave XLR Pro"
     },
     {
