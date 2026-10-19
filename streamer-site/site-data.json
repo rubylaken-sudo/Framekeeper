@@ -79,16 +79,51 @@
   ],
   "challengeNote": "Redeem with channel points on Twitch to trigger a challenge live during the stream.",
   "challenges": [
-    { "tag": "Drop", "title": "Choose Next Drop Spot", "desc": "Squad votes and lands at a chosen POI" },
-    { "tag": "Aim", "title": "One Gun Only Challenge", "desc": "Eliminations with a single weapon type" },
-    { "tag": "Chat", "title": "Don't Say Normie", "desc": "Say the word and the challenge is failed" },
-    { "tag": "Risk", "title": "Hot Drop", "desc": "Land at the busiest named POI every game" },
-    { "tag": "Style", "title": "Choose My Skin", "desc": "Chat picks the skin for the next match" },
-    { "tag": "Build", "title": "Drop All Loot", "desc": "Drop your entire inventory on command" },
-    { "tag": "Chill", "title": "No Challenges This Match", "desc": "A free match — no challenges allowed" },
-    { "tag": "Pace", "title": "Random Fill Game", "desc": "Queue with random fills for the match" },
-    { "tag": "Style", "title": "Choose My Sprite", "desc": "Chat picks the sprite for the next match" },
-    { "tag": "Chat", "title": "Voice Changer", "desc": "Play the match with the voice changer on" }
+    {
+      "tag": "Drop",
+      "title": "Choose Next Drop Spot",
+      "desc": "Squad votes and lands at a chosen POI"
+    },
+    {
+      "tag": "Aim",
+      "title": "One Gun Only Challenge",
+      "desc": "Eliminations with a single weapon type"
+    },
+    {
+      "tag": "Chat",
+      "title": "Don't Say Normie",
+      "desc": "Say the word and the challenge is failed"
+    },
+    {
+      "tag": "Risk",
+      "title": "Hot Drop",
+      "desc": "Land at the busiest named POI every game"
+    },
+    {
+      "tag": "Style",
+      "title": "Choose My Skin",
+      "desc": "Chat picks the skin for the next match"
+    },
+    {
+      "tag": "Build",
+      "title": "Drop All Loot",
+      "desc": "Drop your entire inventory on command"
+    },
+    {
+      "tag": "Chill",
+      "title": "No Challenges This Match",
+      "desc": "A free match — no challenges allowed"
+    },
+    {
+      "tag": "Pace",
+      "title": "Random Fill Game",
+      "desc": "Queue with random fills for the match"
+    },
+    {
+      "tag": "Style",
+      "title": "Choose My Sprite",
+      "desc": "Chat picks the sprite for the next match"
+    }
   ],
   "gear": [
     {
