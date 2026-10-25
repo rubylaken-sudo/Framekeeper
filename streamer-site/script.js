@@ -87,6 +87,7 @@ function renderGear(items) {
 function applySiteData(data) {
   setText('currentlyPlaying', data.currentlyPlaying);
   setText('followers', data.stats && data.stats.followers);
+  setText('twitchFollowers', data.stats && data.stats.twitchFollowers);
   setText('streams', data.stats && data.stats.streams);
   setText('mainGames', data.facts && data.facts.mainGames);
   setText('streamingSince', data.facts && data.facts.streamingSince);

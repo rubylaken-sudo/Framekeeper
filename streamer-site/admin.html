@@ -108,8 +108,10 @@
       <h2>Hero</h2>
       <label for="currentlyPlaying">Currently playing</label>
       <input type="text" id="currentlyPlaying">
-      <label for="followers">Followers</label>
+      <label for="followers">TikTok followers</label>
       <input type="text" id="followers" inputmode="numeric">
+      <label for="twitchFollowers">Twitch followers</label>
+      <input type="text" id="twitchFollowers" inputmode="numeric">
       <label for="streams">Streams</label>
       <input type="text" id="streams">
     </section>
@@ -371,6 +373,7 @@ function renderGear(items) {
 function fillForm(d) {
   $('currentlyPlaying').value = d.currentlyPlaying || '';
   $('followers').value = (d.stats && d.stats.followers) || '';
+  $('twitchFollowers').value = (d.stats && d.stats.twitchFollowers) || '';
   $('streams').value = (d.stats && d.stats.streams) || '';
   $('mainGames').value = (d.facts && d.facts.mainGames) || '';
   $('streamingSince').value = (d.facts && d.facts.streamingSince) || '';
@@ -444,7 +447,12 @@ function collectForm() {
     result: {
       ...data,
       currentlyPlaying: $('currentlyPlaying').value.trim(),
-      stats: { followers: $('followers').value.trim(), streams: $('streams').value.trim() },
+      stats: {
+        ...data.stats,
+        followers: $('followers').value.trim(),
+        twitchFollowers: $('twitchFollowers').value.trim(),
+        streams: $('streams').value.trim()
+      },
       facts: { mainGames: $('mainGames').value.trim(), streamingSince: $('streamingSince').value.trim() },
       schedule,
       gta6: { releaseDate: $('releaseDate').value },
@@ -465,7 +473,7 @@ async function publish() {
 
   const { result, badClips } = collectForm();
   if (badClips.length) { setStatus(`Clip ${badClips.join(', ')}: couldn’t find a video ID in that link.`, 'err'); return; }
-  if (!result.stats.followers) { setStatus('Followers can’t be empty.', 'err'); return; }
+  if (!result.stats.followers) { setStatus('TikTok followers can’t be empty.', 'err'); return; }
   if (!result.gta6.releaseDate) { setStatus('Pick a GTA VI release date.', 'err'); return; }
 
   const button = $('publish');
