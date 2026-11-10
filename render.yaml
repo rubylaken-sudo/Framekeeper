@@ -8,3 +8,11 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+
+  - type: web
+    name: challenge-deck
+    runtime: node
+    rootDir: obs-build
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
